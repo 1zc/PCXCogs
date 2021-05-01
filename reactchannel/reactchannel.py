@@ -387,7 +387,7 @@ class ReactChannel(commands.Cog):
         channel_type = await self.config.custom(
             "REACT_CHANNEL", message.guild.id, message.channel.id
         ).channel_type()
-        if channel_type == "checklist":
+        if channel_type == "checklist" and message.embeds:
             await message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
         elif channel_type == "vote" and not message.author.bot:
             for emoji_type in ["upvote", "downvote"]:
@@ -433,7 +433,8 @@ class ReactChannel(commands.Cog):
             str(payload.emoji) == "\N{WHITE HEAVY CHECK MARK}"
             and channel_type == "checklist"
         ):
-            await delete(message)
+            await channel.send(f"<@{payload.user_id}> is handling the admin call!")
+            await message.clear_reaction(payload.emoji)
             return
         # Vote
         upvote = await self._get_emoji(guild, "upvote")
