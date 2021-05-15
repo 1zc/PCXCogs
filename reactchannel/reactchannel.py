@@ -6,6 +6,7 @@ import discord
 from redbot.core import Config, checks, commands
 from redbot.core.utils import AsyncIter
 from redbot.core.utils.chat_formatting import box, error, warning
+import asyncio
 
 from .pcx_lib import checkmark, delete
 
