@@ -390,7 +390,7 @@ class ReactChannel(commands.Cog):
         ).channel_type()
         if channel_type == "checklist" and message.embeds:
             await message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
-            asyncio.sleep(900)
+            await asyncio.sleep(900)
             await message.clear_reaction("\N{WHITE HEAVY CHECK MARK}")
         elif channel_type == "vote" and not message.author.bot:
             for emoji_type in ["upvote", "downvote"]:
